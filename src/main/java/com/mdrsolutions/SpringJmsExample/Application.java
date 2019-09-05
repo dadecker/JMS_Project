@@ -14,6 +14,9 @@ import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.support.converter.MappingJackson2MessageConverter;
 import org.springframework.jms.support.converter.MessageConverter;
 import org.springframework.jms.support.converter.MessageType;
+import com.twilio.Twilio;
+import com.twilio.rest.api.v2010.account.Message;
+import com.twilio.type.PhoneNumber;
 
 @EnableJms
 @SpringBootApplication
@@ -25,18 +28,12 @@ public class Application extends SpringBootServletInitializer{
         return application.sources(Application.class);
     }
 
-	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
-
-		/**
-		ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
-		Sender sender = context.getBean(Sender.class);
-
-		System.out.println("Preparing to send a message");
-        sender.sendMessage("order-queue", "item: 1234, customer: 1234");
-		 **/
-
-	}
+	public static void main(String[] args)
+    {
+        Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+        Message message2 = Message.creator(new PhoneNumber("+18138175146"), new PhoneNumber("+18136943554"), "Big O'l Titties").create();
+        System.out.println(message2.getSid());
+    }
 
 
 
