@@ -30,6 +30,7 @@ public class Application extends SpringBootServletInitializer{
 
 	public static void main(String[] args)
     {
+        //test commit
         Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
         Message message2 = Message.creator(new PhoneNumber("+18138175146"), new PhoneNumber("+18136943554"), "Big O'l Titties").create();
         System.out.println(message2.getSid());
